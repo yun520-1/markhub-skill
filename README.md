@@ -1,127 +1,149 @@
-# MarkHub - 智能媒体生成中心 🎨
+# MarkHub v3 - Z-Image 独立版智能媒体生成中心
 
-全自动图片和视频生成工具，基于 ComfyUI 和 stable-diffusion.cpp
+[![GitHub](https://img.shields.io/badge/GitHub-yun520--1/markhub--skill-blue)](https://github.com/yun520-1/markhub-skill)
+[![ClawHub](https://img.shields.io/badge/ClawHub-markhub-green)](https://clawhub.ai/yun520-1/markhub)
+[![License](https://img.shields.io/badge/License-MIT--0-yellow)](LICENSE)
 
-## ✨ 核心功能
+**完全独立运行** - 不依赖 ComfyUI 服务器，使用 z_image 模型和 stable-diffusion-cpp-python
 
-- **🖼️ 图片生成** - 支持 Z-Image-Turbo 等模型
-- **🎬 视频生成** - 支持 LTX2、Wan2.1 等模型
-- **🤖 全自动** - 自动参数优化、自动生成、自动验证
-- **📊 质量验证** - 清晰度/亮度/对比度/锐度检查
-- **⏰ 定时任务** - 支持计划任务
-- **📦 批量生成** - 一键生成多张图片
-- **📈 资源监控** - CPU/GPU/内存实时显示
-- **✅ 质量保证** - 无错位、无马赛克验证
+## ✨ 核心特性
+
+- **🖼️ Z-Image 模型** - 最新一代高质量图像生成模型
+- **⚡ Metal 加速** - Apple Silicon 原生优化，速度快
+- **💾 内存优化** - CPU/GPU 智能分离，降低显存占用
+- **📦 本地模型检测** - 自动使用已下载的模型
+- **🔧 智能错误解决** - 自动搜索 GitHub 和 ClawHub
 
 ## 🚀 快速开始
 
-### 前置要求
-
-1. **ComfyUI** - 已安装并运行
-   ```bash
-   cd ~/Documents/lmd_data_root/apps/ComfyUI
-   ./venv/bin/python run.py --listen 127.0.0.1 --port 8188
-   ```
-
-2. **Python 依赖**
-   ```bash
-   pip3 install requests pillow numpy psutil
-   ```
-
-3. **模型文件** - 放置在 ComfyUI models 目录
-   - `unet/z_image_turbo-Q8_0.gguf`
-   - `text_encoders/Qwen3-4B-Q8_0.gguf`
-   - `vae/ae.safetensors`
-
-### 安装
+### 1. 安装依赖
 
 ```bash
-# 从 ClawHub 安装
-clawhub install markhub
+# macOS (Metal 加速)
+CMAKE_ARGS="-DSD_METAL=ON" pip3 install stable-diffusion-cpp-python
 
-# 或手动克隆
-git clone https://github.com/YOUR_USERNAME/markhub-skill.git
-cd markhub-skill
+# Linux (CUDA)
+CMAKE_ARGS="-DSD_CUDA=ON" pip3 install stable-diffusion-cpp-python
+
+# 通用版本
+pip3 install stable-diffusion-cpp-python
 ```
 
-### 使用
+### 2. 准备模型
 
-#### 单张图片生成
+模型自动检测本地路径：`~/Documents/lmd_data_root/apps/ComfyUI/models/`
+
+必需模型文件：
+- `unet/z_image_turbo-Q8_0.gguf` (~6.7GB)
+- `text_encoders/Qwen3-4B-Q8_0.gguf` (~4.0GB)
+- `vae/ae.safetensors` (~0.3GB)
+
+### 3. 生成图片
 
 ```bash
-python3 markhub_api.py
+# 使用默认配置生成
+python3 markhub_v3.py
+
+# 自定义提示词
+python3 markhub_v3.py -p "A beautiful cosmic goddess" -t "goddess"
+
+# 高分辨率
+python3 markhub_v3.py -p "A magnificent landscape" -W 1024 -H 1024 -s 20
+
+# 检查安装状态
+python3 markhub_v3.py --check
 ```
 
-#### API 调用
+## 📖 Python API
 
 ```python
-from markhub_api import MarkHubAPI
+from markhub_v3 import generate_image, check_installation, check_models
 
-hub = MarkHubAPI()
+# 检查环境
+if not check_installation():
+    exit(1)
 
-# 生成单张图片
-result = hub.generate_image(
-    prompt="A magnificent cosmic goddess floating in deep space",
-    title="宇宙女神",
-    width=2048,
-    height=1024,
-    steps=20,
-    cfg=7.0,
-    validate=True
+if not check_models():
+    exit(1)
+
+# 生成图片
+generate_image(
+    prompt="A beautiful woman with long black hair",
+    title="beauty",
+    width=768,
+    height=768,
+    steps=15,
+    cfg=1.0,
+    seed=-1  # 随机种子
 )
-
-# 批量生成
-prompts = [
-    {"title": "宇宙女神", "prompt": "A cosmic goddess..."},
-    {"title": "月光女神", "prompt": "A moon goddess..."}
-]
-results = hub.generate_batch(prompts, auto_schedule=True)
-
-# 全自动生成
-hub.auto_generate(preset="default")
 ```
 
-## 📊 输出配置
+## ⚙️ 配置参数
 
-默认输出尺寸：**2048x1024** (高清)
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| width | 768 | 图像宽度 |
+| height | 768 | 图像高度 |
+| steps | 15 | 采样步数 |
+| cfg | 1.0 | CFG 比例 (Z-Image-Turbo 推荐) |
+| seed | -1 | 随机种子 (-1=随机) |
 
-可在 `markhub_api.py` 中修改：
+## 🔧 常见问题
+
+### 安装失败
+
+确保已安装 cmake 和 python3：
+```bash
+brew install cmake  # macOS
+```
+
+### 内存不足
+
+降低分辨率或启用 CPU 卸载：
 ```python
-DEFAULT_WIDTH = 2048
-DEFAULT_HEIGHT = 1024
+StableDiffusion(
+    ...,
+    offload_params_to_cpu=True,
+    keep_clip_on_cpu=True,
+    keep_vae_on_cpu=True,
+)
 ```
 
-## 🔍 质量验证标准
+### 生成速度慢
 
-| 指标 | 标准 | 说明 |
-|------|------|------|
-| 亮度 | 20-240 | 避免过暗或过亮 |
-| 对比度 | >30 | 确保图像清晰 |
-| 锐度 | >10 | 避免模糊 |
-| 文件大小 | >100KB | 确保完整性 |
+- 确保启用 Metal/CUDA 加速
+- 降低分辨率或步数
+- 关闭其他占用显存的应用
 
-## 📁 目录结构
+## 📊 性能参考
 
-```
-markhub/
-├── skill.json           # 技能配置
-├── markhub_api.py       # API 版本（推荐）
-├── markhub.py           # 独立应用版本
-├── README.md            # 本文档
-└── ...
-```
+**Apple M1 Pro:**
+- 768x768, 15 步：~4-5 分钟
+- 1024x1024, 20 步：~8-10 分钟
 
-## 🎨 预设主题
+## 📝 更新日志
 
-- `default` - 宇宙女神
-- `landscape` - 风景日落
-- `portrait` - 人像
-- `artistic` - 艺术抽象
+### v3.0.0 (2026-03-18)
+- ✅ 使用 Z-Image-Turbo 模型
+- ✅ 使用 stable-diffusion-cpp-python
+- ✅ Metal 加速优化
+- ✅ 内存优化 (CPU/GPU 分离)
+- ✅ 本地模型自动检测
 
-## 📝 许可证
+### v2.0.0
+- 独立运行，不依赖 ComfyUI
+- 自动下载模型
+- 智能错误解决
 
-MIT License
+## 📄 许可证
 
-## 🙏 致谢
+MIT-0
 
-基于 ComfyUI 和 stable-diffusion.cpp 构建
+## 👤 作者
+
+yun520-1
+
+## 🔗 链接
+
+- GitHub: https://github.com/yun520-1/markhub-skill
+- ClawHub: https://clawhub.ai/yun520-1/markhub

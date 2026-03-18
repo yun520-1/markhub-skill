@@ -1,38 +1,42 @@
 {
   "name": "markhub",
-  "displayName": "MarkHub - 独立版智能媒体生成中心",
-  "version": "2.0.0",
-  "description": "完全独立运行，不依赖 ComfyUI，直接使用本地模型生成图片。支持自动下载模型、自动配置环境、智能错误解决（搜索 GitHub/ClawHub）",
+  "displayName": "MarkHub v3 - Z-Image 独立版智能媒体生成中心",
+  "version": "3.0.0",
+  "description": "完全独立运行，不依赖 ComfyUI，使用 z_image 模型和 stable-diffusion-cpp-python。支持本地模型自动检测、Metal 加速、智能错误解决",
   "author": "yun520-1",
   "license": "MIT-0",
-  "keywords": ["image-generation", "standalone", "stable-diffusion", "ai-art", "auto-download"],
+  "keywords": ["image-generation", "standalone", "z-image", "stable-diffusion-cpp", "ai-art", "metal-accel"],
   "main": "markhub_standalone.py",
   "requires": {
     "bins": ["python3", "git", "cmake"],
-    "python_packages": ["requests", "PIL", "numpy", "psutil"]
+    "python_packages": ["stable-diffusion-cpp-python", "PIL", "numpy"]
   },
   "config": {
-    "default_width": 2048,
-    "default_height": 1024,
-    "default_steps": 20,
-    "default_cfg": 7.0,
-    "models_dir": "~/.markhub/models"
+    "default_width": 768,
+    "default_height": 768,
+    "default_steps": 15,
+    "default_cfg": 1.0,
+    "models_dir": "~/Documents/lmd_data_root/apps/ComfyUI/models",
+    "model_files": {
+      "unet": "unet/z_image_turbo-Q8_0.gguf",
+      "llm": "text_encoders/Qwen3-4B-Q8_0.gguf",
+      "vae": "vae/ae.safetensors"
+    }
   },
   "features": [
+    "✅ Z-Image 模型 - 最新一代图像生成模型",
     "✅ 独立运行 - 不依赖 ComfyUI 服务器",
-    "✅ 自动下载模型 - 一键下载所有必需模型",
-    "✅ 自动配置 - 自动安装 stable-diffusion.cpp",
-    "✅ 智能错误解决 - 搜索 GitHub 和 ClawHub 找方案",
-    "✅ 自动验证 - 清晰度/亮度/对比度检查",
-    "✅ 批量生成 - 全自动多张生成",
-    "✅ 资源监控 - CPU/内存实时显示",
-    "✅ 质量保证 - 完整的质量验证"
+    "✅ 本地模型检测 - 自动使用已下载模型",
+    "✅ Metal 加速 - Apple Silicon 优化",
+    "✅ 内存优化 - CPU/GPU 智能分离",
+    "✅ 智能错误解决 - 自动搜索 GitHub/ClawHub",
+    "✅ 快速生成 - 15 步高质量输出",
+    "✅ 质量保证 - 完整的验证和错误处理"
   ],
   "usage": {
-    "install": "python3 markhub_standalone.py --install-sd-cpp && python3 markhub_standalone.py --download-models",
-    "single_image": "python3 markhub_standalone.py -p 'your prompt' -t 'title'",
-    "auto_generate": "python3 markhub_standalone.py",
-    "api_import": "from markhub_standalone import MarkHub; hub = MarkHub(); hub.generate_image('prompt', 'title')"
+    "install": "pip3 install stable-diffusion-cpp-python",
+    "single_image": "python3 generate_beauty.py",
+    "api_import": "from stable_diffusion_cpp import StableDiffusion; sd = StableDiffusion(...)"
   },
   "repository": {
     "type": "git",
