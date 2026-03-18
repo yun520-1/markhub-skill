@@ -1,39 +1,41 @@
 {
   "name": "markhub",
-  "displayName": "MarkHub - 智能媒体生成中心",
-  "version": "1.0.0",
-  "description": "全自动图片和视频生成工具，支持 ComfyUI 后端，提供自动参数优化、批量生成、质量验证、资源监控等功能",
-  "author": "mac 小虫子",
-  "license": "MIT",
-  "keywords": ["image-generation", "video-generation", "comfyui", "ai-art", "media"],
-  "main": "markhub_api.py",
+  "displayName": "MarkHub - 独立版智能媒体生成中心",
+  "version": "2.0.0",
+  "description": "完全独立运行，不依赖 ComfyUI，直接使用本地模型生成图片。支持自动下载模型、自动配置环境、智能错误解决（搜索 GitHub/ClawHub）",
+  "author": "yun520-1",
+  "license": "MIT-0",
+  "keywords": ["image-generation", "standalone", "stable-diffusion", "ai-art", "auto-download"],
+  "main": "markhub_standalone.py",
   "requires": {
-    "bins": ["python3"],
+    "bins": ["python3", "git", "cmake"],
     "python_packages": ["requests", "PIL", "numpy", "psutil"]
   },
   "config": {
-    "comfyui_server": "127.0.0.1:8188",
     "default_width": 2048,
     "default_height": 1024,
     "default_steps": 20,
-    "default_cfg": 7.0
+    "default_cfg": 7.0,
+    "models_dir": "~/.markhub/models"
   },
   "features": [
-    "✅ 自动设置 - 根据提示词自动优化参数",
-    "✅ 自动生成 - 一键生成，无需手动配置",
-    "✅ 自动验证 - 清晰度/亮度/对比度/锐度检查",
-    "✅ 定时任务 - 定时开始/关闭",
+    "✅ 独立运行 - 不依赖 ComfyUI 服务器",
+    "✅ 自动下载模型 - 一键下载所有必需模型",
+    "✅ 自动配置 - 自动安装 stable-diffusion.cpp",
+    "✅ 智能错误解决 - 搜索 GitHub 和 ClawHub 找方案",
+    "✅ 自动验证 - 清晰度/亮度/对比度检查",
     "✅ 批量生成 - 全自动多张生成",
-    "✅ 资源监控 - CPU/GPU/内存实时显示",
-    "✅ 质量保证 - 无错位、无马赛克验证"
+    "✅ 资源监控 - CPU/内存实时显示",
+    "✅ 质量保证 - 完整的质量验证"
   ],
   "usage": {
-    "single_image": "python3 markhub_api.py",
-    "batch_generate": "编辑 markhub_api.py 中的 prompts 列表后运行",
-    "api_import": "from markhub_api import MarkHubAPI; hub = MarkHubAPI(); hub.generate_image('your prompt', 'title')"
+    "install": "python3 markhub_standalone.py --install-sd-cpp && python3 markhub_standalone.py --download-models",
+    "single_image": "python3 markhub_standalone.py -p 'your prompt' -t 'title'",
+    "auto_generate": "python3 markhub_standalone.py",
+    "api_import": "from markhub_standalone import MarkHub; hub = MarkHub(); hub.generate_image('prompt', 'title')"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/markhub-skill"
+    "url": "https://github.com/yun520-1/markhub-skill"
   }
 }
