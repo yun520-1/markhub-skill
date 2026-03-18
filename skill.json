@@ -1,0 +1,39 @@
+{
+  "name": "markhub",
+  "displayName": "MarkHub - 智能媒体生成中心",
+  "version": "1.0.0",
+  "description": "全自动图片和视频生成工具，支持 ComfyUI 后端，提供自动参数优化、批量生成、质量验证、资源监控等功能",
+  "author": "mac 小虫子",
+  "license": "MIT",
+  "keywords": ["image-generation", "video-generation", "comfyui", "ai-art", "media"],
+  "main": "markhub_api.py",
+  "requires": {
+    "bins": ["python3"],
+    "python_packages": ["requests", "PIL", "numpy", "psutil"]
+  },
+  "config": {
+    "comfyui_server": "127.0.0.1:8188",
+    "default_width": 2048,
+    "default_height": 1024,
+    "default_steps": 20,
+    "default_cfg": 7.0
+  },
+  "features": [
+    "✅ 自动设置 - 根据提示词自动优化参数",
+    "✅ 自动生成 - 一键生成，无需手动配置",
+    "✅ 自动验证 - 清晰度/亮度/对比度/锐度检查",
+    "✅ 定时任务 - 定时开始/关闭",
+    "✅ 批量生成 - 全自动多张生成",
+    "✅ 资源监控 - CPU/GPU/内存实时显示",
+    "✅ 质量保证 - 无错位、无马赛克验证"
+  ],
+  "usage": {
+    "single_image": "python3 markhub_api.py",
+    "batch_generate": "编辑 markhub_api.py 中的 prompts 列表后运行",
+    "api_import": "from markhub_api import MarkHubAPI; hub = MarkHubAPI(); hub.generate_image('your prompt', 'title')"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/markhub-skill"
+  }
+}
