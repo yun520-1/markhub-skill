@@ -1,8 +1,8 @@
 {
   "name": "markhub",
-  "displayName": "MarkHub v3 - Z-Image 独立版智能媒体生成中心",
-  "version": "3.0.0",
-  "description": "完全独立运行，不依赖 ComfyUI，使用 z_image 模型和 stable-diffusion-cpp-python。支持本地模型自动检测、Metal 加速、智能错误解决",
+  "displayName": "MarkHub v3.2 - Z-Image 独立版智能媒体生成中心",
+  "version": "3.2.0",
+  "description": "完全独立运行，一键安装脚本支持全平台自动部署（macOS/Windows/Linux），自动下载模型（11GB），生成测试图片。使用 z_image 模型和 stable-diffusion-cpp-python，支持 Metal/CUDA 加速",
   "author": "yun520-1",
   "license": "MIT-0",
   "keywords": ["image-generation", "standalone", "z-image", "stable-diffusion-cpp", "ai-art", "metal-accel"],
@@ -17,6 +17,7 @@
     "default_steps": 15,
     "default_cfg": 1.0,
     "models_dir": "~/Documents/lmd_data_root/apps/ComfyUI/models",
+    "output_dir": "~/Pictures/MarkHub",
     "model_files": {
       "unet": "unet/z_image_turbo-Q8_0.gguf",
       "llm": "text_encoders/Qwen3-4B-Q8_0.gguf",
@@ -25,18 +26,21 @@
   },
   "features": [
     "✅ Z-Image 模型 - 最新一代图像生成模型",
+    "✅ 一键安装 - 全平台自动部署（macOS/Windows/Linux）",
+    "✅ 自动下载模型 - 11GB 模型文件自动获取（带进度条）",
+    "✅ 智能硬件检测 - 自动启用 Metal/CUDA 加速",
     "✅ 独立运行 - 不依赖 ComfyUI 服务器",
     "✅ 本地模型检测 - 自动使用已下载模型",
-    "✅ Metal 加速 - Apple Silicon 优化",
     "✅ 内存优化 - CPU/GPU 智能分离",
-    "✅ 智能错误解决 - 自动搜索 GitHub/ClawHub",
+    "✅ 测试图片生成 - 安装完成后自动生成验证",
     "✅ 快速生成 - 15 步高质量输出",
-    "✅ 质量保证 - 完整的验证和错误处理"
+    "✅ 跨平台输出 - 自动保存到 ~/Pictures/MarkHub/"
   ],
   "usage": {
-    "install": "pip3 install stable-diffusion-cpp-python",
-    "single_image": "python3 generate_beauty.py",
-    "api_import": "from stable_diffusion_cpp import StableDiffusion; sd = StableDiffusion(...)"
+    "install": "curl -fsSL https://raw.githubusercontent.com/yun520-1/markhub-skill/main/install.sh | bash",
+    "single_image": "python3 markhub_v3.py -p \"A beautiful woman\" -t \"beauty\"",
+    "api_import": "from markhub_v3 import generate_image; generate_image(prompt=\"...\", title=\"beauty\")",
+    "output_path": "~/Pictures/MarkHub/markhub_<title>.png"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,46 @@
+{
+  "name": "markhub",
+  "displayName": "MarkHub v3 - Z-Image Standalone AI Image Generator",
+  "version": "3.0.0",
+  "description": "Fully standalone, no ComfyUI dependency. Uses Z-Image model with stable-diffusion-cpp-python. Supports local model auto-detection, Metal acceleration, and smart error resolution.",
+  "author": "yun520-1",
+  "license": "MIT-0",
+  "keywords": ["image-generation", "standalone", "z-image", "stable-diffusion-cpp", "ai-art", "metal-accel"],
+  "main": "markhub_v3.py",
+  "requires": {
+    "bins": ["python3", "git", "cmake"],
+    "python_packages": ["stable-diffusion-cpp-python", "PIL", "numpy"]
+  },
+  "config": {
+    "default_width": 768,
+    "default_height": 768,
+    "default_steps": 15,
+    "default_cfg": 1.0,
+    "models_dir": "~/Documents/lmd_data_root/apps/ComfyUI/models",
+    "model_files": {
+      "unet": "unet/z_image_turbo-Q8_0.gguf",
+      "llm": "text_encoders/Qwen3-4B-Q8_0.gguf",
+      "vae": "vae/ae.safetensors"
+    }
+  },
+  "features": [
+    "✅ Z-Image Model - Next-generation image generation",
+    "✅ Standalone - No ComfyUI server dependency",
+    "✅ Local Model Detection - Auto-detects downloaded models",
+    "✅ Metal Acceleration - Apple Silicon optimized",
+    "✅ Memory Optimized - Smart CPU/GPU separation",
+    "✅ Smart Error Resolution - Auto-searches GitHub/ClawHub",
+    "✅ Fast Generation - 15 steps high-quality output",
+    "✅ Quality Assurance - Complete validation and error handling"
+  ],
+  "usage": {
+    "install": "pip3 install stable-diffusion-cpp-python",
+    "single_image": "python3 markhub_v3.py -p 'your prompt' -t 'title'",
+    "auto_generate": "python3 markhub_v3.py",
+    "api_import": "from stable_diffusion_cpp import StableDiffusion; sd = StableDiffusion(...)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yun520-1/markhub-skill"
+  }
+}
