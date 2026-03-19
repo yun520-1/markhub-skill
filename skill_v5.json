@@ -1,0 +1,68 @@
+{
+  "name": "markhub-v5",
+  "displayName": "MarkHub v5.0 - 智能 ComfyUI 远程控制",
+  "version": "5.0.0",
+  "description": "全自动智能 AI 创作系统，支持文生图、图生图、文生视频、图生视频。自动读取工作流、自动选择模型、自动搜索最佳实践、参数自动优化。支持远程 ComfyUI 控制。",
+  "author": "yun520-1",
+  "license": "MIT-0",
+  "keywords": [
+    "comfyui",
+    "remote-control",
+    "image-generation",
+    "video-generation",
+    "ai-art",
+    "stable-diffusion",
+    "ltx-video",
+    "workflow-automation",
+    "intelligent"
+  ],
+  "main": "markhub_v5_core.py",
+  "requires": {
+    "bins": ["python3", "curl"],
+    "python_packages": ["requests", "websocket-client"]
+  },
+  "config": {
+    "default_comfyui_url": "https://wp08.unicorn.org.cn:19329",
+    "output_dir": "~/Videos/MarkHub",
+    "default_video_duration": 10,
+    "auto_optimize": true,
+    "search_best_practices": true
+  },
+  "features": [
+    "✅ 自动读取工作流 - 智能发现 ComfyUI 可用工作流",
+    "✅ 自动选择模型 - 根据任务类型选择最佳模型",
+    "✅ 智能搜索 - HuggingFace/GitHub/Civitai 最佳实践",
+    "✅ 参数优化 - 自动调整步数、CFG、分辨率",
+    "✅ 文生图 - SDXL/Flux/SD3 等模型支持",
+    "✅ 图生图 - Img2Img/Inpaint/Outpaint",
+    "✅ 文生视频 - LTX-Video/CogVideo/HunyuanVideo",
+    "✅ 图生视频 - I2V/首尾帧控制",
+    "✅ 远程控制 - 支持 HTTPS 远程 ComfyUI",
+    "✅ 错误恢复 - 自动重试和错误处理"
+  ],
+  "usage": {
+    "install": "bash install_v5.sh",
+    "text2image": "python3 markhub_v5_core.py -p \"A beautiful woman\" --url https://your-comfyui.com",
+    "text2video": "python3 markhub_v5_core.py -p \"A dancing woman\" --video --duration 10",
+    "auto": "python3 markhub_v5_core.py -p \"A cat playing\" --auto",
+    "output_path": "~/Videos/MarkHub/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yun520-1/markhub-skill"
+  },
+  "examples": [
+    {
+      "name": "文生图",
+      "command": "python3 markhub_v5_core.py -p \"A beautiful landscape, mountains, lake, golden hour\" -m \"sd_xl_base_1.0.safetensors\""
+    },
+    {
+      "name": "文生视频",
+      "command": "python3 markhub_v5_core.py -p \"A woman dancing in the rain\" --video --duration 10"
+    },
+    {
+      "name": "自动模式",
+      "command": "python3 markhub_v5_core.py -p \"A cat playing with a ball\" --auto"
+    }
+  ]
+}

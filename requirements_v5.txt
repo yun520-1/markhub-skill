@@ -1,0 +1,12 @@
+# MarkHub v5.0 Dependencies
+# Python 3.10+ required
+
+# HTTP Client
+requests>=2.31.0
+
+# WebSocket Support
+websocket-client>=1.6.0
+
+# Optional: For advanced features
+# Pillow>=10.0.0  # Image processing
+# numpy>=1.24.0   # Array operations
