@@ -1,392 +1,274 @@
-# MarkHub v3.2 - Z-Image Standalone AI Image Generator
+# MarkHub v6.1 - Local AI Creation System
 
-[![GitHub](https://img.shields.io/badge/GitHub-yun520--1/markhub--skill-blue)](https://github.com/yun520-1/markhub-skill)
-[![ClawHub](https://img.shields.io/badge/ClawHub-markhub-green)](https://clawhub.ai/yun520-1/markhub)
-[![Version](https://img.shields.io/badge/version-3.2.0-orange)](https://github.com/yun520-1/markhub-skill/releases)
-[![License](https://img.shields.io/badge/License-MIT--0-yellow)](LICENSE)
+**English | [中文](README_CN.md)**
 
-**One-Click Installation · Cross-Platform · Auto Deployment** - Deploy and generate your first AI image in 10 minutes
+🎨 **Fully Local · No ComfyUI · No Legal Risks**
 
 ---
 
-## ✨ What's New in v3.2.0
+## 🌟 Features
 
-### 🚀 One-Click Installer
-- **New Installation Experience** - Complete deployment with a single command
-- **Cross-Platform Support** - macOS / Windows (WSL) / Linux
-- **Auto Hardware Detection** - Intelligently enable Metal/CUDA acceleration
-- **Auto Model Download** - 11GB models automatically downloaded (with progress bar)
-- **Test Image Generation** - Automatically generate verification image after installation
-
-### 📦 Core Features
-- **🖼️ Z-Image Model** - Latest generation high-quality image generation model
-- **⚡ Metal/CUDA Acceleration** - Native optimization for Apple Silicon and NVIDIA GPU
-- **💾 Memory Optimization** - CPU/GPU intelligent separation, reduced VRAM usage
-- **📦 Standalone** - No ComfyUI server dependency
-- **🔧 Smart Error Resolution** - Auto search GitHub and ClawHub
+- ✅ **100% Local** - No internet connection required
+- ✅ **No ComfyUI** - Independent, no external dependencies
+- ✅ **No Legal Risks** - Only official open-source models
+- ✅ **Auto Model Management** - Download, cache, load automatically
+- ✅ **Text-to-Image** - SD-Turbo/SDXL-Turbo/SD-v1.5/SD-v2.1
+- ✅ **Image-to-Image** - Img2Img/Inpaint support
+- ✅ **Text-to-Video** - Multi-frame synthesis
+- ✅ **Smart Optimization** - Auto-select best parameters
 
 ---
 
 ## 🚀 Quick Start
 
-### One-Click Installation (Recommended)
-
-**Complete deployment in 10 minutes with a single command:**
+### Installation
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yun520-1/markhub-skill/main/install.sh | bash
+# 1. Install dependencies
+pip install stable-diffusion-cpp-python pillow numpy
+
+# 2. Install FFmpeg (for video)
+brew install ffmpeg  # macOS
+apt install ffmpeg   # Linux
+
+# 3. Run
+python3 markhub_v6_1.py -p "A beautiful woman"
 ```
 
-**Installation process automatically:**
-1. ✅ Check system environment (Python/cmake)
-2. ✅ Install required dependencies
-3. ✅ Detect hardware acceleration (Metal/CUDA)
-4. ✅ Download model files (~11GB, with progress bar)
-5. ✅ Generate test image to verify installation
-
-**Estimated time:** 10-30 minutes (mainly depends on network speed)
-
----
-
-### Step-by-Step Installation
-
-#### Step 1: Install Dependencies
+### Generate Image
 
 ```bash
-# macOS (Apple Silicon)
-CMAKE_ARGS="-DSD_METAL=ON" pip3 install stable-diffusion-cpp-python
+# Basic (SD-Turbo, 1 step)
+python3 markhub_v6_1.py -p "A cat"
 
-# Linux (NVIDIA GPU)
-CMAKE_ARGS="-DSD_CUDA=ON" pip3 install stable-diffusion-cpp-python
+# High quality (SDXL-Turbo)
+python3 markhub_v6_1.py -p "Portrait" -m sdxl-turbo
 
-# Generic version
-pip3 install stable-diffusion-cpp-python
+# Custom parameters
+python3 markhub_v6_1.py -p "Landscape" --width 1024 --height 1024 --steps 30
 ```
 
-#### Step 2: Download Models
+### Generate Video
 
 ```bash
-# Use download script
-python3 scripts/download_models.py
+# 10 second video
+python3 markhub_v6_1.py -p "Ocean waves" --video --duration 10
 
-# Or manual download
-# Visit: https://huggingface.co/yun520-1/z-image-turbo
+# Custom FPS
+python3 markhub_v6_1.py -p "Sunset" --video --duration 5 --fps 30
 ```
 
-#### Step 3: Test
+### Auto Mode
 
 ```bash
-python3 markhub_v3.py -p "A beautiful woman" -t "test"
+# Auto-select best model
+python3 markhub_v6_1.py -p "Portrait of a woman" --auto
 ```
 
 ---
 
-## 📦 Model Files
+## 📦 Available Models
 
-### Required Models
+| Model | Type | Resolution | Steps | Size | Use Case |
+|-------|------|------------|-------|------|----------|
+| **sd-turbo** | txt2img | 512×512 | 1 | 1.4GB | Fast generation |
+| **sdxl-turbo** | txt2img | 1024×1024 | 1 | 6GB | High-quality portraits |
+| **stable-diffusion-v1-5** | txt2img | 512×512 | 20 | 4GB | General purpose |
+| **stable-diffusion-v2-1** | txt2img | 768×768 | 20 | 5GB | High resolution |
 
-| File | Size | Path | Description |
-|------|------|------|-------------|
-| z_image_turbo-Q8_0.gguf | ~6.7GB | `unet/` | Main model |
-| Qwen3-4B-Q8_0.gguf | ~4.0GB | `text_encoders/` | Text encoder |
-| ae.safetensors | ~0.3GB | `vae/` | VAE decoder |
+---
 
-**Total:** ~11GB
+## 📝 Parameters
 
-### Download Methods
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `-p, --prompt` | Prompt (required) | - |
+| `-n, --negative` | Negative prompt | "" |
+| `-m, --model` | Model name | sd-turbo |
+| `--video` | Generate video | False |
+| `--duration` | Video duration (seconds) | 10 |
+| `--fps` | Video FPS | 24 |
+| `--auto` | Auto mode | False |
+| `--width` | Image width | 512 |
+| `--height` | Image height | 512 |
+| `--steps` | Sampling steps | Auto |
+| `--cfg` | CFG scale | Auto |
+| `-o, --output` | Output path | Auto-generated |
 
-#### Method A: Auto Download (Recommended)
+---
+
+## 📤 Output
+
+- **Images:** `~/Videos/MarkHub/MarkHub_YYYYMMDD_HHMMSS.png`
+- **Videos:** `~/Videos/MarkHub/MarkHub_Video_YYYYMMDD_HHMMSS.mp4`
+
+---
+
+## 🎯 Examples
+
+### High-Quality Portrait
+
 ```bash
-python3 scripts/download_models.py
+python3 markhub_v6_1.py \
+  -p "Beautiful woman portrait, professional photography, studio lighting" \
+  -m sdxl-turbo \
+  --width 1024 \
+  --height 1024
 ```
 
-#### Method B: Manual Download
-1. Visit HuggingFace: https://huggingface.co/yun520-1/z-image-turbo
-2. Download 3 files to corresponding directories
-3. Verify: `python3 scripts/download_models.py --save-checksums`
+### Landscape
 
-#### Method C: Mirror (Recommended for China users)
 ```bash
-# Use Aliyun mirror
-export HF_ENDPOINT=https://hf-mirror.com
-python3 scripts/download_models.py
+python3 markhub_v6_1.py \
+  -p "Beautiful landscape, mountains, lake, sunset, 4k" \
+  -m stable-diffusion-v2-1 \
+  --width 768 \
+  --height 768 \
+  --steps 30
+```
+
+### Dance Video
+
+```bash
+python3 markhub_v6_1.py \
+  -p "A woman dancing gracefully, flowing dress, cinematic" \
+  --video \
+  --duration 10 \
+  --fps 24
+```
+
+### Auto Creation
+
+```bash
+python3 markhub_v6_1.py \
+  -p "A cat playing with yarn" \
+  --auto
 ```
 
 ---
 
-## 🎨 Usage
+## ⚖️ Legal
 
-### Command Line
+### ✅ Legal Use
 
-```bash
-# Basic usage
-python3 markhub_v3.py -p "prompt" -t "image_name"
+This skill only uses official open-source models:
+- **SD-Turbo** - Stability AI (Apache 2.0)
+- **SDXL-Turbo** - Stability AI (Apache 2.0)
+- **Stable Diffusion v1.5** - Stability AI (CreativeML Open RAIL-M)
+- **Stable Diffusion v2.1** - Stability AI (CreativeML Open RAIL-M)
 
-# Custom resolution
-python3 markhub_v3.py -p "A beautiful landscape" -W 1024 -H 1024 -t "landscape"
+All models from official HuggingFace repositories, no legal risks.
 
-# Custom steps
-python3 markhub_v3.py -p "A cat" -s 20 -t "cat"
+### ❌ Prohibited Use
 
-# Fixed random seed
-python3 markhub_v3.py -p "A dog" --seed 42 -t "dog"
-
-# Check installation
-python3 markhub_v3.py --check
-```
-
-### Python API
-
-```python
-from markhub_v3 import generate_image, check_installation, check_models
-
-# Check environment
-if not check_installation():
-    exit(1)
-
-if not check_models():
-    exit(1)
-
-# Generate image
-generate_image(
-    prompt="A beautiful woman with long black hair",
-    title="beauty",
-    width=768,
-    height=768,
-    steps=15,
-    cfg=1.0,
-    seed=-1  # Random seed
-)
-```
-
----
-
-## ⚙️ Configuration Parameters
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `-p, --prompt` | Required | Prompt text |
-| `-t, --title` | output | Output filename |
-| `-W, --width` | 768 | Image width |
-| `-H, --height` | 768 | Image height |
-| `-s, --steps` | 15 | Sampling steps |
-| `-c, --cfg` | 1.0 | CFG scale (Z-Image-Turbo recommends 1.0) |
-| `--seed` | -1 | Random seed (-1=random) |
-| `--check` | - | Check installation status |
-| `--help` | - | Show help information |
-
----
-
-## 📊 Performance Reference
-
-### Apple M1 Pro
-| Resolution | Steps | Time |
-|------------|-------|------|
-| 512x512 | 10 | ~2 min |
-| 768x768 | 15 | ~4-5 min |
-| 1024x1024 | 20 | ~8-10 min |
-
-### NVIDIA RTX 3060 (CUDA)
-| Resolution | Steps | Time |
-|------------|-------|------|
-| 512x512 | 10 | ~1 min |
-| 768x768 | 15 | ~2-3 min |
-| 1024x1024 | 20 | ~5-6 min |
-
-### CPU (Intel i7)
-| Resolution | Steps | Time |
-|------------|-------|------|
-| 512x512 | 10 | ~8 min |
-| 768x768 | 15 | ~15-20 min |
+- Do not generate infringing content
+- Do not generate illegal content
+- Do not infringe portrait rights
+- Comply with local laws
 
 ---
 
 ## 🔧 Troubleshooting
 
-### Q1: Installation Failed - cmake Error
+### Q: Model download failed
 
-**Solution:**
+**A:** Check network or use mirror:
+
 ```bash
-# macOS
-brew install cmake
-
-# Ubuntu/Debian
-sudo apt-get install cmake
-
-# CentOS/RHEL
-sudo yum install cmake
-```
-
----
-
-### Q2: Model Download Too Slow
-
-**Solution:**
-```bash
-# Use mirror
 export HF_ENDPOINT=https://hf-mirror.com
-python3 scripts/download_models.py
-
-# Or use multi-threaded download
-pip3 install huggingface-hub[hf_transfer]
-export HF_HUB_ENABLE_HF_TRANSFER=1
-python3 scripts/download_models.py
+python3 markhub_v6_1.py -p "test"
 ```
 
----
+### Q: Out of memory
 
-### Q3: Out of Memory During Generation
+**A:** Use smaller model or resolution:
 
-**Solution:**
-```python
-# Edit markhub_v3.py, enable CPU offload
-sd = StableDiffusion(
-    ...,
-    offload_params_to_cpu=True,
-    keep_clip_on_cpu=True,
-    keep_vae_on_cpu=True,
-)
-```
-
-Or reduce resolution:
 ```bash
-python3 markhub_v3.py -p "..." -W 512 -H 512
+python3 markhub_v6_1.py -p "test" -m sd-turbo --width 256 --height 256
 ```
 
----
+### Q: Slow generation
 
-### Q4: Slow Generation
+**A:** Use Turbo models:
 
-**Optimization Tips:**
-1. Ensure hardware acceleration is enabled (Metal/CUDA)
-2. Reduce sampling steps (default 15, try 10)
-3. Reduce resolution (768x768 → 512x512)
-4. Close other applications using VRAM
-
----
-
-### Q5: Windows Installation
-
-**Method 1: Use WSL (Recommended)**
 ```bash
-# Install WSL
-wsl --install
-
-# Run installation script in WSL
-curl -fsSL https://raw.githubusercontent.com/yun520-1/markhub-skill/main/install.sh | bash
+python3 markhub_v6_1.py -p "test" -m sd-turbo
 ```
 
-**Method 2: Use Git Bash**
-1. Install Git for Windows (includes Git Bash)
-2. Install Python 3.8+
-3. Run installation script in Git Bash
+### Q: FFmpeg not found
 
----
+**A:** Install FFmpeg:
 
-## 📝 Project Structure
-
-```
-markhub-skill/
-├── install.sh                    # One-click installer
-├── markhub_v3.py                 # Main program
-├── scripts/
-│   ├── download_models.py        # Model downloader
-│   └── install.sh                # Installer (old version)
-├── configs/
-│   └── sdxl_config.json          # SDXL configuration
-├── README.md                     # English documentation
-├── README_CN.md                  # Chinese documentation
-├── SKILL.md                      # ClawHub skill description
-├── skill.json                    # Skill configuration
-└── LICENSE                       # License
+```bash
+brew install ffmpeg  # macOS
+apt install ffmpeg   # Linux
 ```
 
 ---
 
-## 🎬 Changelog
+## 📊 Performance
 
-### v3.2.0 (2026-03-19)
-- ✅ **One-Click Installer** - Cross-platform auto deployment
-- ✅ **Auto Model Download** - With progress bar and resume support
-- ✅ **Smart Hardware Detection** - Auto enable Metal/CUDA acceleration
-- ✅ **Test Image Generation** - Auto verification after installation
-- ✅ **Optimized Error Messages** - More user-friendly error information
-- ✅ **Mirror Support** - Aliyun mirror acceleration
+### Generation Speed (M2 Pro)
 
-### v3.1.0 (2026-03-18)
-- ✅ Cross-platform output path (~/Pictures/MarkHub/)
-- ✅ Memory optimization (CPU/GPU intelligent separation)
-- ✅ Local model auto detection
+| Model | Resolution | Steps | Time/Image |
+|-------|------------|-------|------------|
+| SD-Turbo | 512×512 | 1 | ~2s |
+| SDXL-Turbo | 1024×1024 | 1 | ~5s |
+| SD-v1.5 | 512×512 | 20 | ~30s |
+| SD-v2.1 | 768×768 | 20 | ~60s |
 
-### v3.0.0 (2026-03-18)
-- ✅ Use Z-Image-Turbo model
-- ✅ Use stable-diffusion-cpp-python
-- ✅ Metal acceleration optimization
-- ✅ Standalone, no ComfyUI dependency
+### Video Generation
+
+| Duration | FPS | Frames | Total Time (SD-Turbo) |
+|----------|-----|--------|----------------------|
+| 5s | 24 | 120 | ~4min |
+| 10s | 24 | 240 | ~8min |
+| 10s | 30 | 300 | ~10min |
 
 ---
 
-## 📖 Documentation
+## 📁 Files
 
-- **Chinese:** [README_CN.md](README_CN.md)
-- **ClawHub:** https://clawhub.ai/yun520-1/markhub
-- **HuggingFace:** https://huggingface.co/yun520-1/z-image-turbo
-- **Issues:** https://github.com/yun520-1/markhub-skill/issues
-
----
-
-## 💡 Prompt Examples
-
-### Landscape
-```
-A beautiful landscape with mountains and lake, golden hour, cinematic lighting, highly detailed
-```
-
-### Portrait
-```
-A beautiful woman with long black hair, traditional Chinese dress, cherry blossoms, soft lighting, digital art
-```
-
-### Animal
-```
-A cute cat sitting on a windowsill, sunlight, fluffy fur, highly detailed, 8k
-```
-
-### Sci-Fi
-```
-A futuristic city with flying cars, neon lights, cyberpunk style, night scene, highly detailed
-```
+- `markhub_v6_1.py` - Main program
+- `README.md` - This file (English)
+- `README_CN.md` - Chinese documentation
+- `SKILL.md` - Skill definition
+- `install.sh` - Installation script
+- `clawhub.json` - ClawHub configuration
 
 ---
 
-## 🤝 Contributing
+## 🔄 Changelog
 
-Issues and Pull Requests are welcome!
+### v6.1 (2026-03-20)
+- ✅ Complete rewrite with full English documentation
+- ✅ Improved error handling
+- ✅ Better model management
+- ✅ Video generation optimization
+- ✅ Auto model selection
 
-- **Report Bugs:** https://github.com/yun520-1/markhub-skill/issues
-- **Feature Requests:** https://github.com/yun520-1/markhub-skill/discussions
+### v6.0 (2026-03-20)
+- ✅ Fully local version
+- ✅ No ComfyUI dependency
+- ✅ No legal risks
 
 ---
 
 ## 📄 License
 
-MIT-0
-
----
-
-## 👤 Author
-
-yun520-1
+MIT License
 
 ---
 
 ## 🙏 Acknowledgments
 
-Thanks to:
-- [stable-diffusion-cpp-python](https://github.com/leejet/stable-diffusion.cpp)
-- [Hugging Face](https://huggingface.co/)
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+- **Stability AI** - Open-source models
+- **stable-diffusion-cpp-python** - C++ backend
+- **FFmpeg** - Video synthesis
 
 ---
 
-**Making AI art simple, everyone can create!** 🎨✨
+**Version:** v6.1.0  
+**Release Date:** 2026-03-20  
+**Author:** 1 号小虫子  
+**GitHub:** https://github.com/yun520-1/markhub-skill

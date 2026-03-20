@@ -1,0 +1,15 @@
+{
+  "name": "MarkHub v6.1",
+  "slug": "markhub-v6-1",
+  "version": "6.1.0",
+  "description": "Local AI Creation System, fully local, no ComfyUI, no legal risks",
+  "author": "1 号小虫子",
+  "license": "MIT",
+  "tags": ["image-generation", "local", "stable-diffusion", "video", "ai", "offline"],
+  "requires": {
+    "bins": ["python3", "ffmpeg"],
+    "python_packages": ["stable-diffusion-cpp-python", "pillow", "numpy"]
+  },
+  "entry": "markhub_v6_1.py",
+  "readme": "README.md"
+}
