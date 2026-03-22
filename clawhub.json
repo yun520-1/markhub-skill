@@ -1,15 +1,33 @@
 {
-  "name": "MarkHub v6.1",
-  "slug": "markhub-v6-1",
-  "version": "6.1.0",
-  "description": "Local AI Creation System, fully local, no ComfyUI, no legal risks",
+  "name": "MarkHub v6.2",
+  "slug": "markhub",
+  "version": "6.2.0",
+  "description": "Local AI Creation System with DeerFlow Skills (deep-research, image/video/ppt generation)",
+  "description_cn": "本地 AI 创作系统，集成 DeerFlow 技能（深度研究、图像/视频/PPT 生成）",
   "author": "1 号小虫子",
   "license": "MIT",
-  "tags": ["image-generation", "local", "stable-diffusion", "video", "ai", "offline"],
+  "tags": ["image-generation", "local", "stable-diffusion", "video", "ai", "offline", "deerflow", "deep-research", "ppt-generation"],
   "requires": {
     "bins": ["python3", "ffmpeg"],
     "python_packages": ["stable-diffusion-cpp-python", "pillow", "numpy"]
   },
   "entry": "markhub_v6_1.py",
-  "readme": "README.md"
+  "readme": "README.md",
+  "features": [
+    "完全本地运行",
+    "不依赖 ComfyUI",
+    "DeerFlow 技能集成",
+    "深度研究",
+    "图像生成",
+    "视频生成",
+    "PPT 生成"
+  ],
+  "third_party": {
+    "deerflow": {
+      "name": "DeerFlow",
+      "version": "2.0",
+      "license": "MIT",
+      "url": "https://github.com/bytedance/deer-flow"
+    }
+  }
 }

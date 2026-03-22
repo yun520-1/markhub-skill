@@ -1,5 +1,36 @@
 # MarkHub 更新日志
 
+## [6.2.0] - 2026-03-23
+
+### 🦌 DeerFlow 技能集成
+
+**新增 6 个核心技能** (基于 DeerFlow 2.0, MIT License)
+- ✅ **deep-research** - 深度研究方法论，多角度网络调研
+- ✅ **image-generation** - 结构化图像生成工作流
+- ✅ **video-generation** - 视频生成和参考图像支持
+- ✅ **ppt-generation** - 演示文稿自动生成
+- ✅ **find-skills** - 技能发现和搜索工具
+- ✅ **skill-creator** - 技能创建和编辑工具
+
+**技能目录**
+- ✅ 新增 `skills/` 子目录
+- ✅ 路径适配：容器路径 → 本地路径
+- ✅ 每个技能包含独立 LICENSE.deerflow
+
+**版权合规**
+- ✅ THIRD_PARTY_NOTICES.md - 第三方组件声明
+- ✅ DEERFLOW_INTEGRATION_COMPLETE.md - 集成报告
+- ✅ 每个技能添加 attribution 字段
+- ✅ 完全符合 MIT License 要求
+
+**功能增强**
+- ✅ 内容生成前自动深度研究
+- ✅ PPT 自动生成能力
+- ✅ 技能搜索和创建工具
+- ✅ 视频生成工作流优化
+
+---
+
 ## [3.0.0] - 2026-03-18
 
 ### 🎉 重大更新

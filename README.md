@@ -1,8 +1,16 @@
-# MarkHub v6.1 - Local AI Creation System
+# MarkHub v6.2 - Local AI Creation System with DeerFlow Skills
 
 **English | [中文](README_CN.md)**
 
-🎨 **Fully Local · No ComfyUI · No Legal Risks**
+🎨 **Fully Local · DeerFlow Integrated · No Legal Risks**
+
+### ✨ v6.2.0 New: DeerFlow Skills
+- **deep-research** - Systematic web research
+- **image-generation** - AI image workflow
+- **video-generation** - Video with references
+- **ppt-generation** - Auto PPT creation
+- **find-skills** - Skill discovery
+- **skill-creator** - Skill creation tool
 
 ---
 
