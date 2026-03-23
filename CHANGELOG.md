@@ -1,5 +1,37 @@
 # MarkHub 更新日志
 
+## [6.3.0] - 2026-03-23
+
+### 🔧 ComfyUI 开发技能集成
+
+**新增 9 个 ComfyUI 节点开发技能** (来源：@jtydhr88)
+- ✅ **comfyui-node-basics** - ComfyUI 节点开发基础
+- ✅ **comfyui-node-inputs** - 节点输入参数定义
+- ✅ **comfyui-node-outputs** - 节点输出类型定义
+- ✅ **comfyui-node-datatypes** - 数据类型系统
+- ✅ **comfyui-node-lifecycle** - 节点生命周期管理
+- ✅ **comfyui-node-advanced** - 高级功能和优化
+- ✅ **comfyui-node-migration** - API 版本迁移
+- ✅ **comfyui-node-packaging** - 打包和发布
+- ✅ **comfyui-node-frontend** - 前端界面开发
+
+**技能目录**
+- ✅ 新增 `skills/comfyui-dev/` 子目录
+- ✅ 独立存放 ComfyUI 开发技能
+- ✅ 创建 ATTRIBUTION.md 版权归属声明
+
+**版权合规**
+- ✅ 更新 THIRD_PARTY_NOTICES.md
+- ✅ 明确标注来源和作者
+- ✅ 声明使用限制 (原仓库无明确 LICENSE)
+
+**功能增强**
+- ✅ 完整的 AI 媒体开发工具链
+- ✅ ComfyUI 自定义节点开发支持
+- ✅ Claude Code 技能集成
+
+---
+
 ## [6.2.0] - 2026-03-23
 
 ### 🦌 DeerFlow 技能集成

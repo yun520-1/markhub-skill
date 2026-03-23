@@ -1,12 +1,12 @@
 {
-  "name": "MarkHub v6.2",
+  "name": "MarkHub v6.3",
   "slug": "markhub",
-  "version": "6.2.0",
-  "description": "Local AI Creation System with DeerFlow Skills (deep-research, image/video/ppt generation)",
-  "description_cn": "本地 AI 创作系统，集成 DeerFlow 技能（深度研究、图像/视频/PPT 生成）",
+  "version": "6.3.0",
+  "description": "Local AI + ComfyUI Dev System (DeerFlow + ComfyUI Node Skills)",
+  "description_cn": "本地 AI 创作系统 + ComfyUI 开发工具 (DeerFlow + ComfyUI 节点技能)",
   "author": "1 号小虫子",
   "license": "MIT",
-  "tags": ["image-generation", "local", "stable-diffusion", "video", "ai", "offline", "deerflow", "deep-research", "ppt-generation"],
+  "tags": ["image-generation", "local", "stable-diffusion", "video", "ai", "offline", "deerflow", "deep-research", "ppt-generation", "comfyui", "node-development"],
   "requires": {
     "bins": ["python3", "ffmpeg"],
     "python_packages": ["stable-diffusion-cpp-python", "pillow", "numpy"]

@@ -1,10 +1,21 @@
-# MarkHub v6.2 - Local AI Creation System with DeerFlow Skills
+# MarkHub v6.3 - Local AI + ComfyUI Development System
 
 **English | [中文](README_CN.md)**
 
-🎨 **Fully Local · DeerFlow Integrated · No Legal Risks**
+🎨 **Fully Local · DeerFlow + ComfyUI Skills · Complete Dev Toolchain**
 
-### ✨ v6.2.0 New: DeerFlow Skills
+### ✨ v6.3.0 New: ComfyUI Development Skills
+- **comfyui-node-basics** - ComfyUI node development basics
+- **comfyui-node-inputs** - Node input parameters
+- **comfyui-node-outputs** - Node output types
+- **comfyui-node-datatypes** - Data type system
+- **comfyui-node-lifecycle** - Node lifecycle management
+- **comfyui-node-advanced** - Advanced features
+- **comfyui-node-migration** - API version migration
+- **comfyui-node-packaging** - Packaging and publishing
+- **comfyui-node-frontend** - Frontend UI development
+
+### ✨ v6.2.0: DeerFlow Skills
 - **deep-research** - Systematic web research
 - **image-generation** - AI image workflow
 - **video-generation** - Video with references

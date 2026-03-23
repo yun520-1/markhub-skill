@@ -1,6 +1,6 @@
 ---
 name: markhub
-description: MarkHub v6.2 - Local AI Creation System with DeerFlow Skills (deep-research, image/video/ppt generation)
+description: MarkHub v6.3 - Local AI + ComfyUI Dev System (DeerFlow + ComfyUI Node Skills)
 metadata:
   {
     "openclaw":
