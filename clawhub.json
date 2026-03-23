@@ -1,33 +1,55 @@
 {
-  "name": "MarkHub v6.3",
+  "name": "MarkHub v6.5",
   "slug": "markhub",
-  "version": "6.3.0",
-  "description": "Local AI + ComfyUI Dev System (DeerFlow + ComfyUI Node Skills)",
-  "description_cn": "本地 AI 创作系统 + ComfyUI 开发工具 (DeerFlow + ComfyUI 节点技能)",
+  "version": "6.5.0",
+  "description": "Local AI + ComfyUI + Zopia AI Video System (ComfyNexus + Zopia Integration)",
+  "description_cn": "本地 AI + ComfyUI + Zopia AI 视频系统 (ComfyNexus + Zopia 集成)",
   "author": "1 号小虫子",
   "license": "MIT",
-  "tags": ["image-generation", "local", "stable-diffusion", "video", "ai", "offline", "deerflow", "deep-research", "ppt-generation", "comfyui", "node-development"],
+  "tags": ["image-generation", "local", "stable-diffusion", "video", "ai", "offline", "comfyui", "zopia", "environment-management", "plugin-management"],
   "requires": {
-    "bins": ["python3", "ffmpeg"],
-    "python_packages": ["stable-diffusion-cpp-python", "pillow", "numpy"]
+    "bins": ["python3", "ffmpeg", "git"],
+    "python_packages": ["stable-diffusion-cpp-python", "pillow", "numpy", "requests"]
   },
   "entry": "markhub_v6_1.py",
   "readme": "README.md",
   "features": [
-    "完全本地运行",
-    "不依赖 ComfyUI",
-    "DeerFlow 技能集成",
-    "深度研究",
-    "图像生成",
-    "视频生成",
-    "PPT 生成"
+    "完全本地运行 (stable-diffusion-cpp-python)",
+    "ComfyUI 远程管理 (全平台支持)",
+    "Zopia AI 视频制作 (Agent 对话)",
+    "ComfyNexus 集成 (环境/插件管理)",
+    "环境快照系统",
+    "插件冲突检测",
+    "GitHub 插件搜索",
+    "硬件监控",
+    "4 个 Zopia 预设配置"
+  ],
+  "modules": [
+    {
+      "name": "comfynexus",
+      "description": "ComfyNexus 集成 - 环境管理和插件管理",
+      "files": ["modules/comfynexus/environment_manager.py", "modules/comfynexus/plugin_manager.py"]
+    },
+    {
+      "name": "zopia",
+      "description": "Zopia AI 视频制作 - 全流程自动化",
+      "files": ["modules/zopia/zopia_client.py"]
+    }
   ],
   "third_party": {
-    "deerflow": {
-      "name": "DeerFlow",
-      "version": "2.0",
+    "comfynexus": {
+      "name": "ComfyNexus",
+      "version": "1.0",
       "license": "MIT",
-      "url": "https://github.com/bytedance/deer-flow"
+      "url": "https://github.com/Allen-xxa/ComfyNexus",
+      "description": "ComfyUI 现代化管理平台"
+    },
+    "zopia": {
+      "name": "Zopia AI",
+      "version": "1.0",
+      "license": "Proprietary",
+      "url": "https://zopia.ai",
+      "description": "AI 驱动的视频制作平台"
     }
   }
 }

@@ -1,49 +1,55 @@
 {
   "name": "markhub",
-  "displayName": "MarkHub v3.2 - Z-Image 独立版智能媒体生成中心",
-  "version": "3.2.0",
-  "description": "完全独立运行，一键安装脚本支持全平台自动部署（macOS/Windows/Linux），自动下载模型（11GB），生成测试图片。使用 z_image 模型和 stable-diffusion-cpp-python，支持 Metal/CUDA 加速",
-  "author": "yun520-1",
-  "license": "MIT-0",
-  "keywords": ["image-generation", "standalone", "z-image", "stable-diffusion-cpp", "ai-art", "metal-accel"],
-  "main": "markhub_standalone.py",
+  "displayName": "MarkHub v6.5 - Local AI + ComfyUI + Zopia Video System",
+  "version": "6.5.0",
+  "description": "Complete AI creation system: Local SD (100% offline), ComfyUI remote management (ComfyNexus), Zopia AI video production. Environment snapshots, plugin management, Agent chat workflow.",
+  "author": "1 号小虫子",
+  "license": "MIT",
+  "keywords": ["image-generation", "video", "comfyui", "zopia", "local-ai", "stable-diffusion", "comfynexus", "environment-management"],
+  "main": "markhub_v6_1.py",
   "requires": {
-    "bins": ["python3", "git", "cmake"],
-    "python_packages": ["stable-diffusion-cpp-python", "PIL", "numpy"]
-  },
-  "config": {
-    "default_width": 768,
-    "default_height": 768,
-    "default_steps": 15,
-    "default_cfg": 1.0,
-    "models_dir": "~/Documents/lmd_data_root/apps/ComfyUI/models",
-    "output_dir": "~/Pictures/MarkHub",
-    "model_files": {
-      "unet": "unet/z_image_turbo-Q8_0.gguf",
-      "llm": "text_encoders/Qwen3-4B-Q8_0.gguf",
-      "vae": "vae/ae.safetensors"
-    }
+    "bins": ["python3", "ffmpeg", "git"],
+    "python_packages": ["stable-diffusion-cpp-python", "pillow", "numpy", "requests"]
   },
   "features": [
-    "✅ Z-Image 模型 - 最新一代图像生成模型",
-    "✅ 一键安装 - 全平台自动部署（macOS/Windows/Linux）",
-    "✅ 自动下载模型 - 11GB 模型文件自动获取（带进度条）",
-    "✅ 智能硬件检测 - 自动启用 Metal/CUDA 加速",
-    "✅ 独立运行 - 不依赖 ComfyUI 服务器",
-    "✅ 本地模型检测 - 自动使用已下载模型",
-    "✅ 内存优化 - CPU/GPU 智能分离",
-    "✅ 测试图片生成 - 安装完成后自动生成验证",
-    "✅ 快速生成 - 15 步高质量输出",
-    "✅ 跨平台输出 - 自动保存到 ~/Pictures/MarkHub/"
+    "✅ Local AI Generation - 100% offline with stable-diffusion-cpp-python",
+    "✅ ComfyUI Remote - Multi-platform support (RunPod/Vast.ai/Local)",
+    "✅ Zopia AI Video - Agent chat workflow (screenplay→character→storyboard→video)",
+    "✅ ComfyNexus Integration - Environment & plugin management",
+    "✅ Environment Snapshots - Backup and restore configurations",
+    "✅ Plugin Conflict Detection - Automatic scanning",
+    "✅ GitHub Plugin Search - Built-in marketplace",
+    "✅ Hardware Monitoring - Real-time GPU/CPU/Memory stats",
+    "✅ 4 Zopia Presets - Anime/3D/Pixar/Vertical video",
+    "✅ Performance Optimized - Local ops < 3ms response time"
   ],
   "usage": {
-    "install": "curl -fsSL https://raw.githubusercontent.com/yun520-1/markhub-skill/main/install.sh | bash",
-    "single_image": "python3 markhub_v3.py -p \"A beautiful woman\" -t \"beauty\"",
-    "api_import": "from markhub_v3 import generate_image; generate_image(prompt=\"...\", title=\"beauty\")",
-    "output_path": "~/Pictures/MarkHub/markhub_<title>.png"
+    "install": "cd ~/.jvs/.openclaw/workspace/skills/markhub && bash install.sh",
+    "local_image": "python3 markhub_v6_1.py -p \"A beautiful woman\"",
+    "comfyui_video": "python3 markhub_core.py -p \"A woman dancing\" --video --duration 10",
+    "zopia_project": "python3 -m modules.zopia -t zopia-xxxx -a create -n \"My Video\"",
+    "env_info": "python3 -m modules.comfynexus.environment_manager -a info",
+    "plugin_list": "python3 -m modules.comfynexus.plugin_manager -a list -c /path/to/ComfyUI"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/yun520-1/markhub-skill"
+  },
+  "changelog": {
+    "v6.5.0": [
+      "NEW: Zopia AI Video integration",
+      "NEW: 4 Zopia presets (Anime/3D/Pixar/Vertical)",
+      "NEW: Agent chat workflow support",
+      "NEW: Balance query",
+      "UPDATE: SKILL.md with Zopia examples"
+    ],
+    "v6.4.0": [
+      "NEW: ComfyNexus environment management",
+      "NEW: ComfyNexus plugin management",
+      "NEW: Environment snapshots",
+      "NEW: Plugin conflict detection",
+      "NEW: GitHub plugin search",
+      "PERF: Local ops < 3ms response time"
+    ]
   }
 }

@@ -1,32 +1,49 @@
 ---
 name: markhub
-description: MarkHub v6.3 - Local AI + ComfyUI Dev System (DeerFlow + ComfyUI Node Skills)
+description: MarkHub v6.5 - Local AI + ComfyUI + Zopia AI Video System
 metadata:
   {
     "openclaw":
       {
         "requires": {
-          "bins": ["python3", "ffmpeg"],
-          "python_packages": ["stable-diffusion-cpp-python", "pillow", "numpy"]
+          "bins": ["python3", "ffmpeg", "git"],
+          "python_packages": ["stable-diffusion-cpp-python", "pillow", "numpy", "requests"]
         }
       }
   }
 ---
 
-# MarkHub v6.1 - Local AI Creation System
+# MarkHub v6.4 - Local AI + ComfyUI Management System
 
-**Fully Local · No ComfyUI · No Legal Risks**
+**ComfyNexus Integration · Environment Management · Plugin Control · Hardware Monitoring**
 
 ## Core Features
 
+### 🎯 Local AI Creation
 - ✅ **100% Local** - No internet required
-- ✅ **No ComfyUI** - Independent, no external dependencies
 - ✅ **No Legal Risks** - Only official open-source models
-- ✅ **Auto Model Management** - Download, cache, load automatically
 - ✅ **Text-to-Image** - SD-Turbo/SDXL-Turbo/SD-v1.5/SD-v2.1
-- ✅ **Image-to-Image** - Img2Img/Inpaint support
 - ✅ **Text-to-Video** - Multi-frame synthesis
 - ✅ **Smart Optimization** - Auto-select best parameters
+
+### 🔧 ComfyNexus Integration (NEW! v6.4)
+- ✅ **Environment Management** - Python/PyTorch version detection, snapshots
+- ✅ **Plugin Management** - List, update, conflict detection
+- ✅ **Hardware Monitoring** - GPU/CPU/Memory/Disk real-time stats
+- ✅ **Port Management** - Conflict detection, instance discovery
+- ✅ **System Snapshots** - Environment backup and restore
+
+### 🌐 ComfyUI Platform Support
+- ✅ **Multi-Platform** - RunPod, Vast.ai, Local, etc.
+- ✅ **Auto Detection** - Smart platform recognition
+- ✅ **Failover** - Automatic platform switching
+
+### 🎬 Zopia AI Video (NEW! v6.5)
+- ✅ **Full Pipeline** - Screenplay → Character → Storyboard → Video
+- ✅ **Agent Chat** - Natural language interaction
+- ✅ **Multi-Session** - Multi-turn conversation support
+- ✅ **4 Presets** - Anime/3D/Pixar/Vertical short video
+- ✅ **Balance Query** - Real-time credit check
 
 ## Quick Start
 
@@ -73,6 +90,147 @@ python3 markhub_v6_1.py -p "Sunset" --video --duration 5 --fps 30
 # Auto-select best model
 python3 markhub_v6_1.py -p "Portrait of a woman" --auto
 ```
+
+---
+
+## 🔧 ComfyNexus Tools (NEW! v6.4)
+
+### Environment Management
+
+```bash
+# Check system info
+python3 -m modules.comfynexus.environment_manager -a info
+
+# Create environment snapshot
+python3 -m modules.comfynexus.environment_manager -a snapshot -n "my-backup"
+
+# List snapshots
+python3 -m modules.comfynexus.environment_manager -a list-snapshots
+
+# Check port availability
+python3 -m modules.comfynexus.environment_manager -a check-port -p 8188
+
+# Detect running ComfyUI instances
+python3 -m modules.comfynexus.environment_manager -a detect-instances
+```
+
+### Plugin Management
+
+```bash
+# List installed plugins
+python3 -m modules.comfynexus.plugin_manager -a list -c /path/to/ComfyUI
+
+# Check for updates
+python3 -m modules.comfynexus.plugin_manager -a check-updates -c /path/to/ComfyUI
+
+# Update all plugins
+python3 -m modules.comfynexus.plugin_manager -a update-all -c /path/to/ComfyUI
+
+# Check conflicts
+python3 -m modules.comfynexus.plugin_manager -a check-conflicts -c /path/to/ComfyUI
+
+# Search GitHub for plugins
+python3 -m modules.comfynexus.plugin_manager -a search -q "face enhancement" \
+  -t your_github_token
+```
+
+### Example Output
+
+```
+============================================================
+  ComfyNexus 环境信息
+============================================================
+
+🖥️  操作系统：Darwin 25.4.0
+
+🐍 Python: 3.9.6
+   路径：/Applications/Xcode.app/Contents/Developer/usr/bin/python3
+
+🔦 PyTorch: 2.8.0
+   CUDA: ❌  None
+
+💾 内存：32.0 GB (可用：14.6 GB)
+
+🚀 运行中的 ComfyUI 实例：无
+```
+
+---
+
+## 🎬 Zopia AI Video (NEW! v6.5)
+
+Zopia 是 AI 驱动的视频制作平台，通过自然语言对话完成全流程：剧本→角色→分镜→视频。
+
+### Get Token
+
+1. Visit https://zopia.ai/settings/api-tokens
+2. Login and click "Generate New Token"
+3. Copy token: `zopia-xxxxxxxxxxxx` (valid 30 days)
+
+### Quick Start
+
+```bash
+# List projects
+python3 -m modules.zopia -t zopia-xxxx -a list
+
+# Create project
+python3 -m modules.zopia -t zopia-xxxx -a create -n "My Video"
+
+# Apply preset settings
+python3 -m modules.zopia -t zopia-xxxx -a settings -b base_xxx --preset anime_standard
+
+# Chat with Agent (generate screenplay)
+python3 -m modules.zopia -t zopia-xxxx -a chat -b base_xxx -m "请生成一个校园青春题材的三幕剧本"
+
+# Continue conversation (character design)
+python3 -m modules.zopia -t zopia-xxxx -a chat -b base_xxx -s session_xxx -m "请为剧本中的主要角色生成详细设定"
+
+# Check balance
+python3 -m modules.zopia -t zopia-xxxx -a balance
+```
+
+### Available Presets
+
+| Preset | Style | Aspect Ratio | Use Case |
+|--------|-------|--------------|----------|
+| **anime_standard** | 日本动画 | 16:9 | 标准动画视频 |
+| **realistic_3d** | 3D CG 写实 | 16:9 | 写实 3D 视频 |
+| **pixar_cartoon** | Pixar 卡通 | 16:9 | 卡通风格 |
+| **vertical_short** | 日本动画 | 9:16 | 竖屏短视频 |
+
+### Video Models
+
+| Model | Method | Description |
+|-------|--------|-------------|
+| **kling_o3** ⭐ | n_grid | 多帧网格，连贯性好 |
+| **vidu_q3_pro** ⭐ | n_grid | 高质量视频生成 |
+| **kling_v3.0** | n_grid | Kling v3.0 |
+| **seedance_1.5** | start_frame | 首帧驱动 |
+
+### Workflow Example
+
+```bash
+# 1. Create project
+python3 -m modules.zopia -t zopia-xxxx -a create -n "Campus Story"
+# → base_id: base_xxx
+
+# 2. Apply settings
+python3 -m modules.zopia -t zopia-xxxx -a settings -b base_xxx --preset anime_standard
+
+# 3. Generate screenplay
+python3 -m modules.zopia -t zopia-xxxx -a chat -b base_xxx -m "请生成一个校园青春题材的三幕剧本"
+# → session_id: session_xxx
+
+# 4. Character design
+python3 -m modules.zopia -t zopia-xxxx -a chat -b base_xxx -s session_xxx -m "请为剧本中的主要角色生成详细设定，包括设计图"
+
+# 5. Storyboard
+python3 -m modules.zopia -t zopia-xxxx -a chat -b base_xxx -s session_xxx -m "请为第一幕生成分镜表，列出所有镜头的景别和描述"
+
+# 6. Generate video (3-5 shots at a time)
+python3 -m modules.zopia -t zopia-xxxx -a chat -b base_xxx -s session_xxx -m "开始生成 shot1~shot3 的视频"
+```
+
+---
 
 ## Available Models
 
