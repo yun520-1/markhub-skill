@@ -1,0 +1,113 @@
+{
+  "name": "markhub-v8",
+  "version": "8.0.0",
+  "description": "MarkHub v8.0 - 本地 AI 短视频创作系统，完全本地化，无远程依赖，隐私保护",
+  "author": "1 号小虫子",
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "ai",
+    "local",
+    "offline",
+    "privacy",
+    "content-creation",
+    "text-to-video"
+  ],
+  "category": "media",
+  "repository": "https://github.com/yun520-1/markhub-skill",
+  "homepage": "https://github.com/yun520-1/markhub-skill/tree/main/markhub-v8",
+  "bugs": "https://github.com/yun520-1/markhub-skill/issues",
+  "security": {
+    "no_remote_dependency": true,
+    "privacy_protection": true,
+    "local_processing": true,
+    "no_api_leak_risk": true,
+    "copyright_compliance": true
+  },
+  "dependencies": {
+    "python": ">=3.11",
+    "packages": [
+      "requests",
+      "pillow",
+      "numpy",
+      "edge-tts (optional)",
+      "piper-tts (optional)",
+      "openai-whisper (optional)",
+      "stable-diffusion-cpp-python (optional)"
+    ],
+    "system": [
+      "ffmpeg"
+    ]
+  },
+  "config": {
+    "optional_env": [
+      "DEEPSEEK_API_KEY",
+      "OPENAI_API_KEY"
+    ],
+    "no_required_api_keys": true,
+    "local_mode_default": true
+  },
+  "features": [
+    "完全本地化运行",
+    "无远程依赖",
+    "隐私保护",
+    "AI 自动生成文案（本地/云端可选）",
+    "本地素材库管理",
+    "字幕自动生成（本地 Whisper）",
+    "语音合成（本地 Piper/云端 Edge 可选）",
+    "背景音乐",
+    "批量生成",
+    "多尺寸支持（竖屏 9:16/横屏 16:9/方形 1:1）",
+    "本地 AI 图像生成（SD-Turbo/SDXL）",
+    "文生视频",
+    "版权合规"
+  ],
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "requirements": {
+    "cpu": "4 核或以上（推荐 8 核）",
+    "memory": "4GB 或以上（推荐 8GB）",
+    "gpu": "非必须（推荐用于本地 AI）",
+    "disk": "10GB 可用空间"
+  },
+  "usage": {
+    "offline": "python3 markhub_v8.py -p \"视频主题\" --offline",
+    "local_llm": "python3 markhub_v8.py -p \"视频主题\" --local-llm",
+    "webui": "python3 markhub_v8.py --webui --offline",
+    "example": "完全本地生成短视频，无需联网"
+  },
+  "legal": {
+    "compliance": "严格使用本地素材或无版权素材",
+    "materials": [
+      "本地素材库（用户自备）",
+      "CC0 无版权素材（可选）"
+    ],
+    "music": [
+      "本地音乐（用户自备）",
+      "开源音乐库"
+    ],
+    "fonts": [
+      "思源黑体（开源）",
+      "系统默认字体"
+    ],
+    "privacy": "所有数据本地处理，不上传云端",
+    "user_responsibility": "用户对生成内容负责"
+  },
+  "changelog": {
+    "v8.0.0": [
+      "完全重构，去除 ComfyUI 远程控制",
+      "去除所有远程服务器依赖",
+      "清理历史记录和特定 URL 记忆",
+      "优化安全架构，隐私保护",
+      "默认本地模式，无需 API Key",
+      "支持本地大模型（Ollama/LM Studio）",
+      "支持本地语音（Piper TTS）",
+      "支持本地字幕（Whisper）",
+      "本地素材库管理",
+      "严格版权合规"
+    ]
+  }
+}
